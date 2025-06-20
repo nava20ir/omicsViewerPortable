@@ -1,0 +1,938 @@
+Loading required package: shiny
+
+Listening on http://127.0.0.1:3947
+Loading required package: BiocGenerics
+
+Attaching package: 'BiocGenerics'
+
+The following objects are masked from 'package:stats':
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from 'package:base':
+
+    anyDuplicated, append, as.data.frame, basename, cbind, colnames,
+    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
+    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+    union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: 'S4Vectors'
+
+The following objects are masked from 'package:base':
+
+    expand.grid, I, unname
+
+Loading required package: IRanges
+
+Attaching package: 'IRanges'
+
+The following object is masked from 'package:grDevices':
+
+    windows
+
+
+Attaching package: 'fs'
+
+The following object is masked from 'package:XVector':
+
+    path
+
+The following object is masked from 'package:BiocGenerics':
+
+    path
+
+Loading required package: GenomeInfoDb
+Loading required package: ggplot2
+
+Attaching package: 'DT'
+
+The following objects are masked from 'package:shiny':
+
+    dataTableOutput, renderDataTable
+
+Loading required package: bit
+
+Attaching package: 'bit'
+
+The following object is masked from 'package:base':
+
+    xor
+
+Attaching package bit64
+package:bit64 (c) 2011-2017 Jens Oehlschlaegel
+creators: integer64 runif64 seq :
+coercion: as.integer64 as.vector as.logical as.integer as.double as.character as.bitstring
+logical operator: ! & | xor != == < <= >= >
+arithmetic operator: + - * / %/% %% ^
+math: sign abs sqrt log log2 log10
+math: floor ceiling trunc round
+querying: is.integer64 is.vector [is.atomic} [length] format print str
+values: is.na is.nan is.finite is.infinite
+aggregation: any all min max range sum prod
+cumulation: diff cummin cummax cumsum cumprod
+access: length<- [ [<- [[ [[<-
+combine: c rep cbind rbind as.data.frame
+WARNING don't use as subscripts
+WARNING semantics differ from integer
+for more help type ?bit64
+
+Attaching package: 'bit64'
+
+The following objects are masked from 'package:GenomicRanges':
+
+    match, order, rank
+
+The following objects are masked from 'package:XVector':
+
+    match, order, rank
+
+The following objects are masked from 'package:IRanges':
+
+    match, order
+
+The following objects are masked from 'package:S4Vectors':
+
+    %in%, match, order, rank
+
+The following objects are masked from 'package:BiocGenerics':
+
+    %in%, match, order, rank
+
+The following object is masked from 'package:utils':
+
+    hashtab
+
+The following objects are masked from 'package:base':
+
+    %in%, :, is.double, match, order, rank
+
+You are using 'flatxml'. 
+
+If you want to convert XML data to R data frames or vice-versa, it is recommend to install the 'xmlconvert' package and use its xml_to_df() and df_to_xml() functions. Type 'install.packages("xmlconvert", dependencies = TRUE)' into the R console' to install 'xmlconvert'.
+
+
+Attaching package: 'jsonlite'
+
+The following object is masked from 'package:shiny':
+
+    validate
+
+
+Attaching package: 'shinydashboard'
+
+The following object is masked from 'package:graphics':
+
+    box
+
+
+Attaching package: 'Matrix'
+
+The following object is masked from 'package:S4Vectors':
+
+    expand
+
+
+Attaching package: 'igraph'
+
+The following object is masked from 'package:cli':
+
+    tree
+
+The following object is masked from 'package:GenomicRanges':
+
+    union
+
+The following object is masked from 'package:fs':
+
+    path
+
+The following object is masked from 'package:XVector':
+
+    path
+
+The following object is masked from 'package:IRanges':
+
+    union
+
+The following object is masked from 'package:S4Vectors':
+
+    union
+
+The following objects are masked from 'package:BiocGenerics':
+
+    normalize, path, union
+
+The following objects are masked from 'package:stats':
+
+    decompose, spectrum
+
+The following object is masked from 'package:base':
+
+    union
+
+
+Attaching package: 'glue'
+
+The following object is masked from 'package:GenomicRanges':
+
+    trim
+
+The following object is masked from 'package:IRanges':
+
+    trim
+
+
+Attaching package: 'dplyr'
+
+The following objects are masked from 'package:igraph':
+
+    as_data_frame, groups, union
+
+The following objects are masked from 'package:GenomicRanges':
+
+    intersect, setdiff, union
+
+The following object is masked from 'package:GenomeInfoDb':
+
+    intersect
+
+The following object is masked from 'package:XVector':
+
+    slice
+
+The following objects are masked from 'package:IRanges':
+
+    collapse, desc, intersect, setdiff, slice, union
+
+The following objects are masked from 'package:S4Vectors':
+
+    first, intersect, rename, setdiff, setequal, union
+
+The following objects are masked from 'package:BiocGenerics':
+
+    combine, intersect, setdiff, union
+
+The following objects are masked from 'package:stats':
+
+    filter, lag
+
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: 'fastmatch'
+
+The following object is masked from 'package:dplyr':
+
+    coalesce
+
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: 'Biobase'
+
+The following object is masked from 'package:httr':
+
+    content
+
+The following object is masked from 'package:bit64':
+
+    cache
+
+
+Attaching package: 'vctrs'
+
+The following object is masked from 'package:dplyr':
+
+    data_frame
+
+
+Attaching package: 'nlme'
+
+The following object is masked from 'package:dplyr':
+
+    collapse
+
+The following object is masked from 'package:IRanges':
+
+    collapse
+
+
+Attaching package: 'psych'
+
+The following object is masked from 'package:bit':
+
+    keysort
+
+The following objects are masked from 'package:ggplot2':
+
+    %+%, alpha
+
+The following object is masked from 'package:GenomicRanges':
+
+    distance
+
+The following objects are masked from 'package:IRanges':
+
+    distance, reflect
+
+
+Attaching package: 'xfun'
+
+The following object is masked from 'package:igraph':
+
+    tree
+
+The following objects are masked from 'package:tools':
+
+    file_ext, Rcmd
+
+The following object is masked from 'package:cli':
+
+    tree
+
+The following objects are masked from 'package:fs':
+
+    dir_create, dir_exists, file_exists
+
+The following objects are masked from 'package:base':
+
+    attr, isFALSE
+
+
+Attaching package: 'networkD3'
+
+The following object is masked from 'package:DT':
+
+    JS
+
+
+Attaching package: 'rstatix'
+
+The following object is masked from 'package:IRanges':
+
+    desc
+
+The following object is masked from 'package:stats':
+
+    filter
+
+
+Attaching package: 'zoo'
+
+The following objects are masked from 'package:base':
+
+    as.Date, as.Date.numeric
+
+
+Attaching package: 'scales'
+
+The following objects are masked from 'package:psych':
+
+    alpha, rescale
+
+Loading required package: matrixStats
+
+Attaching package: 'matrixStats'
+
+The following objects are masked from 'package:Biobase':
+
+    anyMissing, rowMedians
+
+The following object is masked from 'package:dplyr':
+
+    count
+
+
+Attaching package: 'MatrixGenerics'
+
+The following objects are masked from 'package:matrixStats':
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+The following object is masked from 'package:Biobase':
+
+    rowMedians
+
+Using libcurl 7.64.1 with Schannel
+
+Attaching package: 'curl'
+
+The following object is masked from 'package:httr':
+
+    handle_reset
+
+
+Attaching package: 'memoise'
+
+The following object is masked from 'package:httr':
+
+    timeout
+
+
+Attaching package: 'gridExtra'
+
+The following object is masked from 'package:Biobase':
+
+    combine
+
+The following object is masked from 'package:dplyr':
+
+    combine
+
+The following object is masked from 'package:BiocGenerics':
+
+    combine
+
+
+Attaching package: 'zip'
+
+The following objects are masked from 'package:utils':
+
+    unzip, zip
+
+
+Attaching package: 'rlang'
+
+The following object is masked from 'package:Biobase':
+
+    exprs
+
+The following object is masked from 'package:igraph':
+
+    is_named
+
+The following objects are masked from 'package:lazyeval':
+
+    as_name, call_modify, call_standardise, expr_label, expr_text,
+    f_env, f_env<-, f_label, f_lhs, f_lhs<-, f_rhs, f_rhs<-, f_text,
+    is_atomic, is_call, is_formula, is_lang, is_pairlist, missing_arg
+
+The following object is masked from 'package:assertthat':
+
+    has_name
+
+The following objects are masked from 'package:jsonlite':
+
+    flatten, unbox
+
+
+Attaching package: 'pkgconfig'
+
+The following object is masked from 'package:httr':
+
+    set_config
+
+
+Attaching package: 'bitops'
+
+The following object is masked from 'package:rlang':
+
+    %|%
+
+The following object is masked from 'package:Matrix':
+
+    %&%
+
+
+Attaching package: 'evaluate'
+
+The following object is masked from 'package:assertthat':
+
+    is.error
+
+
+Attaching package: 'purrr'
+
+The following objects are masked from 'package:rlang':
+
+    %@%, as_function, flatten, flatten_chr, flatten_dbl, flatten_int,
+    flatten_lgl, flatten_raw, invoke, splice
+
+The following object is masked from 'package:scales':
+
+    discard
+
+The following objects are masked from 'package:igraph':
+
+    compose, simplify
+
+The following objects are masked from 'package:lazyeval':
+
+    is_atomic, is_formula
+
+The following object is masked from 'package:jsonlite':
+
+    flatten
+
+The following object is masked from 'package:GenomicRanges':
+
+    reduce
+
+The following object is masked from 'package:XVector':
+
+    compact
+
+The following object is masked from 'package:IRanges':
+
+    reduce
+
+
+Attaching package: 'htmlwidgets'
+
+The following object is masked from 'package:networkD3':
+
+    JS
+
+
+Attaching package: 'cowplot'
+
+The following object is masked from 'package:ggpubr':
+
+    get_legend
+
+------------------------------------------------------------------------------
+You have loaded plyr after dplyr - this is likely to cause problems.
+If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
+library(plyr); library(dplyr)
+------------------------------------------------------------------------------
+
+Attaching package: 'plyr'
+
+The following object is masked from 'package:purrr':
+
+    compact
+
+The following object is masked from 'package:matrixStats':
+
+    count
+
+The following objects are masked from 'package:rstatix':
+
+    desc, mutate
+
+The following objects are masked from 'package:dplyr':
+
+    arrange, count, desc, failwith, id, mutate, rename, summarise,
+    summarize
+
+The following object is masked from 'package:ggpubr':
+
+    mutate
+
+The following object is masked from 'package:XVector':
+
+    compact
+
+The following object is masked from 'package:IRanges':
+
+    desc
+
+The following object is masked from 'package:S4Vectors':
+
+    rename
+
+
+Attaching package: 'magrittr'
+
+The following object is masked from 'package:purrr':
+
+    set_names
+
+The following object is masked from 'package:rlang':
+
+    set_names
+
+The following object is masked from 'package:GenomicRanges':
+
+    subtract
+
+
+Attaching package: 'generics'
+
+The following object is masked from 'package:evaluate':
+
+    evaluate
+
+The following object is masked from 'package:dplyr':
+
+    explain
+
+The following objects are masked from 'package:igraph':
+
+    components, union
+
+The following object is masked from 'package:compiler':
+
+    compile
+
+The following objects are masked from 'package:GenomicRanges':
+
+    as.factor, intersect, setdiff, union
+
+The following object is masked from 'package:GenomeInfoDb':
+
+    intersect
+
+The following objects are masked from 'package:IRanges':
+
+    as.factor, intersect, setdiff, union
+
+The following objects are masked from 'package:S4Vectors':
+
+    as.factor, intersect, setdiff, setequal, union
+
+The following objects are masked from 'package:BiocGenerics':
+
+    intersect, setdiff, union
+
+The following objects are masked from 'package:base':
+
+    as.difftime, as.factor, as.ordered, intersect, is.element, setdiff,
+    setequal, union
+
+
+Attaching package: 'DelayedArray'
+
+The following object is masked from 'package:purrr':
+
+    simplify
+
+The following object is masked from 'package:igraph':
+
+    simplify
+
+The following objects are masked from 'package:base':
+
+    aperm, apply, rowsum, scale, sweep
+
+
+Attaching package: 'withr'
+
+The following objects are masked from 'package:rlang':
+
+    local_options, with_options
+
+The following object is masked from 'package:tools':
+
+    makevars_user
+
+
+Attaching package: 'pillar'
+
+The following object is masked from 'package:dplyr':
+
+    dim_desc
+
+The following object is masked from 'package:cli':
+
+    style_bold
+
+
+Attaching package: 'RCurl'
+
+The following object is masked from 'package:bit':
+
+    clone
+
+
+Attaching package: 'tibble'
+
+The following object is masked from 'package:vctrs':
+
+    data_frame
+
+The following object is masked from 'package:igraph':
+
+    as_data_frame
+
+The following object is masked from 'package:assertthat':
+
+    has_name
+
+
+Attaching package: 'car'
+
+The following object is masked from 'package:purrr':
+
+    some
+
+The following object is masked from 'package:psych':
+
+    logit
+
+The following object is masked from 'package:dplyr':
+
+    recode
+
+
+Attaching package: 'shinyWidgets'
+
+The following object is masked from 'package:psych':
+
+    progressBar
+
+
+Attaching package: 'survMisc'
+
+The following object is masked from 'package:ggplot2':
+
+    autoplot
+
+
+Attaching package: 'plotly'
+
+The following objects are masked from 'package:plyr':
+
+    arrange, mutate, rename, summarise
+
+The following object is masked from 'package:igraph':
+
+    groups
+
+The following object is masked from 'package:httr':
+
+    config
+
+The following object is masked from 'package:ggplot2':
+
+    last_plot
+
+The following object is masked from 'package:XVector':
+
+    slice
+
+The following object is masked from 'package:IRanges':
+
+    slice
+
+The following object is masked from 'package:S4Vectors':
+
+    rename
+
+The following object is masked from 'package:stats':
+
+    filter
+
+The following object is masked from 'package:graphics':
+
+    layout
+
+
+Attaching package: 'data.table'
+
+The following object is masked from 'package:purrr':
+
+    transpose
+
+The following object is masked from 'package:rlang':
+
+    :=
+
+The following object is masked from 'package:SummarizedExperiment':
+
+    shift
+
+The following objects are masked from 'package:dplyr':
+
+    between, first, last
+
+The following objects are masked from 'package:reshape2':
+
+    dcast, melt
+
+The following object is masked from 'package:bit':
+
+    setattr
+
+The following object is masked from 'package:GenomicRanges':
+
+    shift
+
+The following object is masked from 'package:IRanges':
+
+    shift
+
+The following objects are masked from 'package:S4Vectors':
+
+    first, second
+
+
+Attaching package: 'xtable'
+
+The following object is masked from 'package:survMisc':
+
+    xtable
+
+The following object is masked from 'package:pillar':
+
+    align
+
+
+Attaching package: 'tidyr'
+
+The following object is masked from 'package:RCurl':
+
+    complete
+
+The following object is masked from 'package:magrittr':
+
+    extract
+
+The following object is masked from 'package:reshape2':
+
+    smiths
+
+The following object is masked from 'package:igraph':
+
+    crossing
+
+The following objects are masked from 'package:Matrix':
+
+    expand, pack, unpack
+
+The following object is masked from 'package:S4Vectors':
+
+    expand
+
+
+Attaching package: 'httpuv'
+
+The following object is masked from 'package:rlang':
+
+    interrupt
+
+
+Attaching package: 'munsell'
+
+The following object is masked from 'package:colorspace':
+
+    desaturate
+
+
+Attaching package: 'survminer'
+
+The following object is masked from 'package:survival':
+
+    myeloma
+
+
+Attaching package: 'bslib'
+
+The following object is masked from 'package:broom':
+
+    bootstrap
+
+The following object is masked from 'package:utils':
+
+    page
+
+
+Attaching package: 'shinyjs'
+
+The following object is masked from 'package:shinyWidgets':
+
+    alert
+
+The following object is masked from 'package:RCurl':
+
+    reset
+
+The following object is masked from 'package:DBI':
+
+    show
+
+The following object is masked from 'package:DelayedArray':
+
+    show
+
+The following object is masked from 'package:BiocParallel':
+
+    show
+
+The following object is masked from 'package:RSQLite':
+
+    show
+
+The following object is masked from 'package:SummarizedExperiment':
+
+    show
+
+The following object is masked from 'package:Biobase':
+
+    show
+
+The following object is masked from 'package:Rcpp':
+
+    show
+
+The following object is masked from 'package:Matrix':
+
+    show
+
+The following object is masked from 'package:GenomicRanges':
+
+    show
+
+The following object is masked from 'package:GenomeInfoDb':
+
+    show
+
+The following object is masked from 'package:XVector':
+
+    show
+
+The following object is masked from 'package:IRanges':
+
+    show
+
+The following object is masked from 'package:S4Vectors':
+
+    show
+
+The following object is masked from 'package:stats4':
+
+    show
+
+The following object is masked from 'package:colorspace':
+
+    show
+
+The following object is masked from 'package:shiny':
+
+    runExample
+
+The following objects are masked from 'package:methods':
+
+    removeClass, show
+
+[1] "middle of app module"
+[1] "Running iheatmapModule"
+[1] "Running iheatmapModule"
+[1] "imputation method was chaned to :perseus"
+[1] "../appData"
+^C^C

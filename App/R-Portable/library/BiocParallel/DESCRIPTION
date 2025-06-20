@@ -1,0 +1,63 @@
+Package: BiocParallel
+Type: Package
+Title: Bioconductor facilities for parallel evaluation
+Version: 1.30.2
+Authors@R: c(
+    person("Bioconductor Package Maintainer",
+        email="maintainer@bioconductor.org", role="cre"),
+    person("Martin", "Morgan", role="aut"),
+    person("Jiefei", "Wang", role = "aut"),
+    person("Valerie", "Obenchain", role="aut"),
+    person("Michel", "Lang", email="michellang@gmail.com", role="aut"),
+    person("Ryan", "Thompson", email="rct@thompsonclan.org", role="aut"),
+    person("Nitesh", "Turaga", role="aut"),
+    person("Aaron", "Lun", role = "ctb"),
+    person("Henrik", "Bengtsson", role = "ctb"))
+Description: This package provides modified versions and novel
+    implementation of functions for parallel evaluation, tailored to
+    use with Bioconductor objects.
+URL: https://github.com/Bioconductor/BiocParallel
+BugReports: https://github.com/Bioconductor/BiocParallel/issues
+biocViews: Infrastructure
+License: GPL-2 | GPL-3
+SystemRequirements: C++11
+Depends: methods, R (>= 3.5.0)
+Imports: stats, utils, futile.logger, parallel, snow
+Suggests: BiocGenerics, tools, foreach, BatchJobs, BBmisc, doParallel,
+        Rmpi, GenomicRanges, RNAseqData.HNRNPC.bam.chr14,
+        TxDb.Hsapiens.UCSC.hg19.knownGene, VariantAnnotation,
+        Rsamtools, GenomicAlignments, ShortRead, codetools, RUnit,
+        BiocStyle, knitr, batchtools, data.table
+Collate: AllGenerics.R DeveloperInterface.R prototype.R bploop.R
+        ErrorHandling.R log.R bpbackend-methods.R bpisup-methods.R
+        bplapply-methods.R bpiterate-methods.R bpstart-methods.R
+        bpstop-methods.R BiocParallelParam-class.R bpmapply-methods.R
+        bpschedule-methods.R bpvec-methods.R bpvectorize-methods.R
+        bpworkers-methods.R bpaggregate-methods.R bpvalidate.R
+        SnowParam-class.R MulticoreParam-class.R
+        TransientMulticoreParam-class.R register.R SerialParam-class.R
+        DoparParam-class.R SnowParam-utils.R BatchJobsParam-class.R
+        BatchtoolsParam-class.R progress.R ipcmutex.R utilities.R rng.R
+        bpinit.R reducer.R worker.R bpoptions.R
+LinkingTo: BH
+VignetteBuilder: knitr
+git_url: https://git.bioconductor.org/packages/BiocParallel
+git_branch: RELEASE_3_15
+git_last_commit: e7e109f
+git_last_commit_date: 2022-05-06
+Date/Publication: 2022-05-19
+NeedsCompilation: yes
+Packaged: 2022-05-19 21:15:19 UTC; biocbuild
+Author: Bioconductor Package Maintainer [cre],
+  Martin Morgan [aut],
+  Jiefei Wang [aut],
+  Valerie Obenchain [aut],
+  Michel Lang [aut],
+  Ryan Thompson [aut],
+  Nitesh Turaga [aut],
+  Aaron Lun [ctb],
+  Henrik Bengtsson [ctb]
+Maintainer: Bioconductor Package Maintainer <maintainer@bioconductor.org>
+Built: R 4.2.0; x86_64-w64-mingw32; 2022-05-20 09:30:04 UTC; windows
+ExperimentalWindowsRuntime: ucrt
+Archs: x64

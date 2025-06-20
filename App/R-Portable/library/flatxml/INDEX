@@ -1,0 +1,28 @@
+flatxml                 flatXML: Tools for Working with XML Files as R
+                        Dataframes
+fxml_findPath           Finding XML elements
+fxml_findPathBottom     Finding XML elements
+fxml_findPathFull       Finding XML elements
+fxml_findPathRoot       Finding XML elements
+fxml_getAttribute       Attributes of an XML element
+fxml_getAttributesAll   Attributes of an XML element
+fxml_getChildren        Children of an XML element
+fxml_getDepthLevel      Handling flat XML files
+fxml_getElement         Handling flat XML files
+fxml_getElementInfo     Handling flat XML files
+fxml_getParent          Parent of an XML element
+fxml_getSiblings        Siblings of an XML element
+fxml_getUniqueElements
+                        Handling flat XML files
+fxml_getValue           Value of an XML element
+fxml_hasAttributes      Attributes of XML elements
+fxml_hasChildren        Children of an XML element
+fxml_hasParent          Parent of an XML element
+fxml_hasSiblings        Siblings of an XML element
+fxml_hasValue           Value of an XML element
+fxml_importXMLFlat      Handling flat XML files
+fxml_numAttributes      Attributes of XML elements
+fxml_numChildren        Children of an XML element
+fxml_numSiblings        Siblings of an XML element
+fxml_toDataFrame        Converting between XML and dataframes
+fxml_toXML              Converting between XML and dataframes

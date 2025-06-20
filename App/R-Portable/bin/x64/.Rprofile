@@ -1,0 +1,1 @@
+.libPaths( file.path(getwd(), "App", "R-portable", "library") )

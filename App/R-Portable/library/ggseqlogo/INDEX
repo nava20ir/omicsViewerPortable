@@ -1,0 +1,12 @@
+geom_logo               Plots sequence logo as a layer on ggplot
+ggseqlogo               Quick sequence logo plot
+list_col_schemes        List color schemes available in ggseqlogo
+list_fonts              List fonts available in ggseqlogo
+make_col_scheme         Create new sequence logo color scheme
+pfms_dna                List of position frequency matrices for
+                        transcription factors
+seqs_aa                 List of aligned kinase-substrate binding
+                        sequences
+seqs_dna                List of aligned transcription factor binding
+                        sequences
+theme_logo              ggseqlogo custom theme

@@ -1,0 +1,62 @@
+app_module              Application level 0 module
+app_ui                  Application level 0 UI
+asEsetWithAttr          Convert SummarizedExperiment to ExpressionSet
+                        retaining all attributes
+correlationAnalysis     Correlating a expression matrix with
+                        phenotypical variables
+csc2list                convert a column compressed sparse matrix to a
+                        list
+exprspca                Perform PCA and prepare results for
+                        'omicsViewer'
+extendMetaData          Add extra columns to the phenoData/colData or
+                        featureData/rowData in
+                        ExpressionSet/SummarizedExperiment
+fgsea1                  Wrapper of fgseaMultilevel function to take
+                        binary gene set matrix as input
+fillNA                  Filling NAs in a matrix using constants
+                        calculated from user the defined function
+filterRow               Filter out rows of expression matrix
+getAutoRIF              Get genes associated with search terms and
+                        AutoRIF annotations
+getMQParams             Parse mqpar.xml file
+getUPRefProteomeID      get uniprot reference proteome IDs
+gsAnnotIdList           Annotation of gene/protein function using
+                        multiple IDs.
+hasAttr                 Check whether an object has an attribute
+hclust2str              Convert hclust object to/from single character
+list2csc                convert a list to column compressed sparse
+                        matrix
+multi.t.test            Function to perform multiple t-tests on an
+                        expression matrix
+nColors                 Generating k distinct colors
+normalize.nQuantiles    Normalization using n quantiles
+normalize.totsum        Normalize total sum
+normalizeColWise        Column-wise normalization of expression matrix
+normalizeData           Normalized expression matrix
+omicsViewer             Start omicsViewer
+parseDatTerm            Extract function annotation from uniprot .dat
+                        file
+plotly_boxplot_module   Shiny module for boxplot using plotly - Module
+plotly_boxplot_ui       Shiny module for boxplot using plotly - UI
+plotly_scatter_module   Shiny module for scatter plot using plotly -
+                        Module
+plotly_scatter_ui       Shiny module for scatter plot using plotly - UI
+prepOmicsViewer         Prepare object to be viewed by omicsViewer
+read.proteinGroups      Reading proteinGroup table of MaxQuant output
+read.proteinGroups.lf   Read protein groups output of maxquant output
+                        and split it to columns
+readESVObj              Read the object of SummarizedExperiment or
+                        ExpressetSet to be visualized using omicsViewer
+read_gmt                Reading gene set .gmt file
+removeVarQC             Removing variance of reference samples
+rowshift                Row-wise normalization of expression matrix
+                        with or without reference sample
+saveOmicsViewerDb       Save the xcmsViewer result object as sqlite
+                        database
+triselector_module      The three-step selector - the module function
+triselector_ui          The three-step selector - the ui function
+trisetter               Create a nx3 matrix that can be use for
+                        triselector given a meta and expression table
+validMQFolder           MQ folder validator Validate whether a folder
+                        is a MQ output folder
+varSelector             variable selector
