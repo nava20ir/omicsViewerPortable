@@ -149,7 +149,7 @@ app_module <- function (input, output, session, .dir, filePattern = ".(RDS|db|sq
 
 
     
-    print(.dir())    
+      
     ll <- list.files(.dir(), pattern = filePattern, ignore.case = TRUE)
     updateSelectizeInput(session = session, inputId = "selectFile", 
                          choices = ll, selected = "")
@@ -243,29 +243,44 @@ app_module <- function (input, output, session, .dir, filePattern = ".(RDS|db|sq
     }
     
     ig <- imputeGetter(reactive_eset())
-    
+  
     withProgress(message = "Writing table", value = 0, {
       wb <- createWorkbook(creator = "BayBioMS")
       addWorksheet(wb, sheetName = "Phenotype info")
       addWorksheet(wb, sheetName = "Feature info")
       addWorksheet(wb, sheetName = "Expression")
       addWorksheet(wb, sheetName = "Geneset annot")
-      incProgress(1/5, detail = "expression matrix")
+      incProgress(1/6, detail = "expression matrix")
       writeData(wb, sheet = "Expression", td(expr()))
       if (!is.null(ig)) {
         addWorksheet(wb, sheetName = "Expression_imputed")
         writeData(wb, sheet = "Expression_imputed", td(ig))
       }
-      incProgress(1/5, detail = "feature table")
+      incProgress(1/6, detail = "feature table")
       writeData(wb, sheet = "Feature info", td(fdata()))
-      incProgress(1/5, detail = "phenotype table")
+      incProgress(1/6, detail = "phenotype table")
       writeData(wb, sheet = "Phenotype info", td(pdata()))
-      incProgress(1/5, detail = "writing geneset annotation")
-      writeData(wb, sheet = "Geneset annot", attr(fdata(), 
-                                                  "GS"))
-      incProgress(1/5, detail = "Saving table")
+      incProgress(1/6, detail = "writing geneset annotation")
+      writeData(wb, sheet = "Geneset annot", attr(fdata(), "GS"))
+
+      tryCatch({
+        print("trying to write the final excel file for download")
+        print(.dir())
+        
+        addWorksheet(wb, sheetName = "Raw_input")
+        incProgress(1/6, detail = "writing geneset input sheet")
+        
+        object_info <- readRDS(file.path(.dir(), "obj.RDS"))
+        writeData(wb, sheet = "Raw_input", obj$annot)
+        
+      }, error = function(e) {
+        message("⚠️ Error while gettting the raw data: ", e$message)
+      })
+      incProgress(1/6, detail = "Saving table")
       saveWorkbook(wb, file = file, overwrite = TRUE)
     })
+
+
   })
   output$summary <- renderUI({
     if (!vEset()) {
@@ -1438,7 +1453,7 @@ feature_general_module <- function (input, output, session, reactive_expr, react
     tab <- tab[reactive_i(), , drop = FALSE]
     ic <- vapply(tab, is.numeric, logical(1)) & vapply(tab, 
                                                        is.integer, logical(1))
-    # tab[ic] <- lapply(tab[ic], signif, digits = 2)
+    #tab[ic] <- lapply(tab[ic], signif, digits = 2)
     colnames(tab) <- sub("General\\|All\\|", "", colnames(tab))
     tab
   })
@@ -1515,6 +1530,7 @@ fillNA <- function(x, method='perseus'){
     result = impute_custom(x)
   } else {
     result = impute_perseus(x)
+    
   }
 }, error = function(e) {
   message("Error caught: ", e$message)
@@ -2761,12 +2777,37 @@ L1_data_space_module <- function (input, output, session, expr, pdata, fdata, re
     req(expr())
     if (ncol(expr()) <= 3) 
       return(NULL)
+
     if (is.null(cormat())) {
-      cc <- cor(expr(), use = "pairwise.complete.obs")
-      diag(cc) <- NA
-      hcl <- hclust(as.dist(1 - cor(t(cc), use = "pair")), 
-                    method = "ward.D")
+
+    new_expr = expr()
+    make_hclust <- function(new_expr){
+        # compute correlation matrix
+        cc <- cor(new_expr, use = "pairwise.complete.obs")
+        diag(cc) <- NA
+        # compute hierarchical clustering
+        finalhcl <- hclust(as.dist(1 - cor(t(cc), use = "pair")), method = "ward.D")
+        return(list(finalhcl=finalhcl,cc=cc))
+
+    }
+
+      finalhcl <- tryCatch({
+        return(make_hclust(new_expr))
+      }, warning = function(e) {
+        message("Error in correlation or clustering: ", e$message)
+        new_expr[is.na(new_expr)] = 0
+        return(make_hclust(new_expr))
+
+      },  error = function(e) {
+        message("Error in correlation or clustering: ", e$message)
+        new_expr[is.na(new_expr)] = 0
+        return(make_hclust(new_expr))
+      })
+      hcl = finalhcl$finalhcl
+      cc = finalhcl$cc
+
       dend <- as.dendrogram(hcl)
+      
       dl <- list(pearson_ward.D = list(ord = hcl$order, 
                                        hcl = dend))
       attr(cc, "rowDendrogram") <- dl
@@ -3429,6 +3470,9 @@ multi.t.test <- function (x, pheno, compare = NULL, fillNA = FALSE, method = 'pe
       df[[paste("quantile", i, j, sep = "|")]] <- rq
     }
   }
+
+
+  print('going for t-test')
   for (i in seq_len(nrow(compare))) {
     v <- compare[i, ]
     i1 <- which(pheno[[v[1]]] == v[2])
@@ -3443,8 +3487,12 @@ multi.t.test <- function (x, pheno, compare = NULL, fillNA = FALSE, method = 'pe
       if (length(t$estimate) == 1) 
         md <- t$estimate[[1]]
       else md <- t$estimate[1] - t$estimate[2]
-      c(pvalue = t$p.value, mean.diff = md)
+      res <- c(pvalue = t$p.value, mean.diff = md)
+      # this is added to handle in case imputation is off
+      if (sum(!is.na(xx[i1])) <= 1 | sum(!is.na(xx[i2])) <= 1 ) res['pvalue'] = 1
+      return(res)
     })
+    
     pv <- tv[1, ]
     fdr <- p.adjust(pv, method = "fdr")
     df[[paste("ttest", paste(v[2], v[3], sep = "_vs_"), "pvalue", 
@@ -4510,6 +4558,10 @@ prepOmicsViewer <- function (expr, pData, fData, PCA = TRUE, ncomp = min(8, ncol
                              gs = NULL, stringDB = NULL, surv = NULL, SummarizedExperiment = TRUE) 
 {
   print('Running Preomics')
+  if (method == 'none') ttest.fillNA = F # if method is none we turn off imputation for the t-test
+  print('####')
+  print(paste0('this is the ttest.fillNA: ',ttest.fillNA))
+  print('####')
   p0 <- pData
   de <- dim(expr)
   if (nrow(pData) != de[2]) 
@@ -4553,7 +4605,7 @@ prepOmicsViewer <- function (expr, pData, fData, PCA = TRUE, ncomp = min(8, ncol
     fData <- cbind(fData, pc$features)
   }
   if (!is.null(t.test)) {
-    print('Running for t-test')
+
     tres <- multi.t.test(x = expr, pheno = p0, compare = t.test, 
                          fillNA = ttest.fillNA, method = method, ...)
     fData <- cbind(fData, tres)
@@ -4973,6 +5025,8 @@ readESVObj  <- function (x)
 
 removeVarQC <- function (x, ref, positive = TRUE, ...) 
 {
+  tryCatch({
+  print('Running remove VarQC from omicsViewer')
   ls <- list(...)
   if (length(ls) > 0) 
     x <- normalize.nQuantiles(x, ...)
@@ -4984,7 +5038,13 @@ removeVarQC <- function (x, ref, positive = TRUE, ...)
   mm <- mm + rowMedians(x)
   if (positive) 
     mm[which(mm < 0)] <- 0
-  mm
+  return(mm) 
+
+  }, warning = function(w) {
+  print(paste0(w,'happened in svd'))
+  return(x)
+  }
+)
 }
 
 
@@ -5103,7 +5163,7 @@ sample_general_module <- function (input, output, session, reactive_phenoData, r
     tab <- tab[reactive_j(), , drop = FALSE]
     ic <- vapply(tab, is.numeric, logical(1)) & vapply(tab, 
                                                        is.integer, logical(1))
-    # tab[ic] <- lapply(tab[ic], signif, digits = 2)
+    #tab[ic] <- lapply(tab[ic], signif, digits = 2)
     colnames(tab) <- sub("General\\|All\\|", "", colnames(tab))
     tab
   })
@@ -5856,6 +5916,3 @@ vectORATall <- function (gs, i, background, minOverlap = 2, minSize = 2, maxSize
     warning("Unknown sort method, the results are not sorted!")
   rs
 }
-
-
-
